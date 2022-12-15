@@ -7,7 +7,7 @@ namespace Tomi_zh
         static void Main(string[] args)
         {
             Ngc ngc = new Ngc(100);
-            ngc.Simulate();
+            ngc.Simulate(1000);
         }
     }
 }

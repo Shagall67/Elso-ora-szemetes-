@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace Tomi_zh
 {
@@ -10,6 +11,7 @@ namespace Tomi_zh
         List<Engszi> Residents { get; set; }
         public Ngc(int population)
         {
+            Residents = new List<Engszi>();
             Random r = new Random();
             this.Population = population;
             for (int i = 0; i < population; i++)
@@ -29,24 +31,39 @@ namespace Tomi_zh
                 }
             }
         }
-        public void Simulate()
+        public void Simulate(int iterations)
         {
-            Random r = new Random();
-            foreach (var engszi in Residents) // mindegyik engszi mozog 1-et
+            for (int i = 0; i < iterations; i++)
             {
-                engszi.Position = r.Next(0, 101);
-            }
-            foreach (var engszi in Residents) // találkozások
-            {
-                foreach (var e in Residents)
+                Random r = new Random();
+                foreach (var engszi in Residents) // mindegyik engszi mozog 1-et
                 {
-                    if (e.Position == engszi.Position)
+                    engszi.Position = r.Next(0, 101);
+                }
+                foreach (var engszi in Residents) // találkozások
+                {
+                    foreach (var e in Residents)
                     {
-                        engszi.Meet(e);
-                        e.Meet(engszi);
+                        if (e.Position == engszi.Position)
+                        {
+                            engszi.Meet(e);
+                            e.Meet(engszi);
+                        }
                     }
                 }
+                Console.WriteLine(this.GetAllHappy());
+                Thread.Sleep(500);
             }
+        }
+
+        public int GetAllHappy()
+        {
+            int allHappy = 0;
+            foreach (var engszi in Residents)
+            {
+                allHappy += engszi.Happy;
+            }
+            return allHappy;
         }
     }
 }
