@@ -6,7 +6,8 @@ namespace Tomi_zh
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Ngc ngc = new Ngc(100);
+            ngc.Simulate();
         }
     }
 }

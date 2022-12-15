@@ -10,9 +10,10 @@ namespace Tomi_zh
         {
             Random r = new Random();
             this.Happy = r.Next(0, 101);
+            this.Position = r.Next(0, 101);
         }
 
-        public void Meet (Engszi engszi)
+        public override void Meet (Engszi engszi)
         {
             this.Happy = engszi.Happy;
         }

@@ -10,6 +10,7 @@ namespace Tomi_zh
         {
             Random r = new Random();
             this.Happy = r.Next(0, 21);
+            this.Position = r.Next(0, 101);
         }
         public void Meet (Engszi engszi)
         {

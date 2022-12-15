@@ -29,5 +29,24 @@ namespace Tomi_zh
                 }
             }
         }
+        public void Simulate()
+        {
+            Random r = new Random();
+            foreach (var engszi in Residents) // mindegyik engszi mozog 1-et
+            {
+                engszi.Position = r.Next(0, 101);
+            }
+            foreach (var engszi in Residents) // találkozások
+            {
+                foreach (var e in Residents)
+                {
+                    if (e.Position == engszi.Position)
+                    {
+                        engszi.Meet(e);
+                        e.Meet(engszi);
+                    }
+                }
+            }
+        }
     }
 }
